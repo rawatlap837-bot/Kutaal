@@ -151,7 +151,8 @@ const ClientResults = () => {
             .client-results-track {
               scrollbar-width: none;
               scroll-behavior: auto;
-              touch-action: pan-x;
+              /* Keep vertical page scrolling available when a gesture starts on a card. */
+              touch-action: pan-y;
               cursor: grab;
               overscroll-behavior-x: contain;
               padding: 0.5rem 0.25rem 1rem;
