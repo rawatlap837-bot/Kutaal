@@ -12,7 +12,7 @@ const Offer = ({ onBook }) => {
           <h3 className="mt-2 text-xl font-extrabold">Mission Fit Bharat – 1:1 Transformation Call</h3>
           <p className="mt-4 text-6xl font-extrabold bg-brand bg-clip-text text-transparent">₹{PAYMENT.price}</p>
           <p className="mt-1 text-sm text-white/60">Pay once • कोई सब्सक्रिप्शन नहीं</p>
-          <button onClick={onBook} className="btn mt-6 w-full bg-white text-ink">PAY ₹{PAYMENT.price} &amp; BOOK YOUR CALL</button>
+          <button onClick={onBook} className="btn mt-6 w-full bg-brand text-white shadow-lg shadow-purple/25 hover:-translate-y-0.5">PAY ₹{PAYMENT.price} &amp; BOOK YOUR CALL</button>
         </div>
         <ul className="space-y-3 text-sm">
           {["Fitness report & goal analysis", "Personalized fat-loss / muscle-gain plan", "Live doubt solving", "Lifestyle guidance", "WhatsApp video call या Google Meet"].map((t) => (

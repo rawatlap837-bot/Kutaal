@@ -4,7 +4,10 @@ import { BRAND, PAYMENT, MEDIA } from "../data/index.js";
 const Hero = ({ onBook }) => {
   return (
     <>
-    <section className="relative overflow-hidden bg-gradient-to-b from-lavender to-white">
+    <section className="hero-premium relative isolate overflow-hidden bg-gradient-to-b from-lavender to-white">
+      <div className="hero-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
+      <div className="pointer-events-none absolute -left-40 top-16 -z-10 h-96 w-96 rounded-full bg-purple/10 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -right-40 top-40 -z-10 h-96 w-96 rounded-full bg-blue/10 blur-3xl" aria-hidden="true" />
       <div className={`mx-auto grid items-center justify-items-center gap-10 px-4 py-16 text-center sm:py-20 md:py-24 ${MEDIA.coachPhoto ? "max-w-6xl md:grid-cols-2" : "max-w-4xl"}`}>
         <div className="mx-auto w-full max-w-3xl text-center">
           <span className="mb-6 inline-block rounded-full border border-purple/15 bg-white/90 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.1em] text-purple shadow-sm sm:text-xs">

@@ -17,6 +17,7 @@ import Footer from "./sections/Footer.jsx";
 import StickyCta from "./sections/StickyCta.jsx";
 import Reveal from "./components/Reveal.jsx";
 import BookingPrep from "./sections/BookingPrep.jsx";
+import Navbar from "./sections/Navbar.jsx";
 
 // The page = these sections in this order. Reorder or delete a line to change the page.
 export default function App() {
@@ -24,8 +25,9 @@ export default function App() {
   const openBooking = () => setOpen(true);
 
   return (
-    <div id="top" className="pb-20 md:pb-0">
+    <div id="top" className="pb-16 md:pb-0">
       <BookingModal open={open} onClose={() => setOpen(false)} />
+      <Navbar onBook={openBooking} />
       <Reveal><Hero onBook={openBooking} /></Reveal>
       <Reveal><Challenges /></Reveal>
       <Reveal><Coach onBook={openBooking} /></Reveal>

@@ -7,5 +7,5 @@ export const BRAND = {
   whatsapp: "917889367234", // country code + number, no "+"
   whatsappDisplay: "+91 78893 67234",
   site: "https://kutaalmissionfitbharat.online",
-  logo: "/images/logo.png", // put the approved 3D logo here
+  logo: "/logo.png", // approved 3D logo in public/
 };

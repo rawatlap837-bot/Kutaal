@@ -7,15 +7,67 @@ body { @apply bg-white font-sans text-ink antialiased overflow-x-hidden; }
 
 #root { width: 100%; margin-inline: auto; }
 
+h1, h2, h3, h4, h5, h6, .section-subheading { text-transform: capitalize; }
+
+.hero-premium::after {
+  position: absolute;
+  z-index: -1;
+  inset: auto 0 0;
+  height: 22rem;
+  content: "";
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.78));
+  pointer-events: none;
+}
+.hero-grid {
+  opacity: 0.82;
+  background-image:
+    linear-gradient(to right, rgba(100, 73, 210, 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(100, 73, 210, 0.16) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, black 0%, black 68%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* Keep the approved palette consistent across all page sections. */
+.site-section-tint {
+  background-color: #F5F3FC;
+}
+
 .reveal-section {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 650ms ease, transform 650ms cubic-bezier(0.2, 0.65, 0.3, 1);
+  transform: translate3d(0, 36px, 0) scale(0.985);
+  filter: blur(3px);
+  transition:
+    opacity 850ms ease var(--reveal-delay, 0ms),
+    transform 850ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    filter 850ms ease var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
 }
 .reveal-section.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+  will-change: auto;
 }
+
+@keyframes icon-pop {
+  0% { opacity: 0; transform: translateY(7px) scale(0.72) rotate(-8deg); }
+  70% { opacity: 1; transform: translateY(-2px) scale(1.08) rotate(2deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+@keyframes icon-nudge {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  45% { transform: translateY(-3px) rotate(-6deg); }
+  75% { transform: translateY(0) rotate(5deg); }
+}
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.04); }
+}
+.reveal-section.is-visible svg {
+  animation: icon-pop 560ms cubic-bezier(0.2, 0.8, 0.2, 1) both, icon-float 2.8s ease-in-out 560ms infinite;
+}
+.card:hover svg,
+[class*="bg-brand"]:hover svg { animation: icon-nudge 460ms ease-in-out; }
 
 @layer components {
   .grad-text { @apply bg-brand bg-clip-text text-transparent; }
@@ -26,11 +78,35 @@ body { @apply bg-white font-sans text-ink antialiased overflow-x-hidden; }
 }
 
 @media (max-width: 640px) {
-  .btn { @apply px-5 text-xs; }
+  .btn { min-height: 2.6rem; padding: 0.65rem 1rem; font-size: 0.7rem; }
+  .reveal-section > section { padding-block: 2rem !important; }
+  .reveal-section > section > div { row-gap: 1.25rem; }
+  .reveal-section > section :is(h2, h3) { margin-top: 0.5rem; }
+  .reveal-section > section > div.mx-auto.mb-10 { margin-bottom: 1.25rem; }
+  .reveal-section > section > div.mx-auto.mb-10 > p { margin-top: 0.5rem; line-height: 1.5; }
+  .reveal-section > section.rounded-\[2rem\] { padding-inline: 1rem !important; }
+  .card { padding: 1rem; }
+  .card > .mb-4 { margin-bottom: 0.65rem; }
+  .journey-gallery > div { padding: 0.5rem; }
+  .journey-gallery img { border-radius: 1rem; }
+  .services-grid > .card { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); column-gap: 0.75rem; align-items: center; }
+  .services-grid > .card > div { grid-row: span 2; width: 2.5rem; height: 2.5rem; margin: 0; border-radius: 0.8rem; }
+  .services-grid > .card > h3 { margin: 0; font-size: 0.95rem; line-height: 1.25; }
+  .services-grid > .card > p { grid-column: 2; margin-top: 0.2rem; font-size: 0.78rem; line-height: 1.4; }
+  .hero-premium > div.mx-auto { padding-top: 0.75rem; padding-bottom: 1.25rem; }
+  .hero-premium h1 { font-size: clamp(2rem, 9vw, 2.5rem); }
+  .hero-premium h1 span { display: block; }
+  .hero-premium p { margin-top: 0.75rem; line-height: 1.6; }
+  .hero-premium span.mb-6 { margin-bottom: 1rem; padding: 0.45rem 0.75rem; font-size: 9px; }
+  .hero-premium .mt-8 { margin-top: 1.25rem; }
+  .hero-premium .mt-4 { margin-top: 0.75rem; }
+  .hero-premium .btn { width: 100%; }
+  .hero-premium > p { padding-bottom: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .animate-float, .card, .btn { animation: none !important; transition: none !important; }
-  .reveal-section { opacity: 1; transform: none; transition: none; }
+  svg { animation: none !important; }
+  .reveal-section { opacity: 1; transform: none; filter: none; transition: none; }
 }

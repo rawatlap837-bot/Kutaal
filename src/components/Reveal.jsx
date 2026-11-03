@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const Reveal = ({ children }) => {
+const Reveal = ({ children, delay = 0 }) => {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -21,7 +21,7 @@ const Reveal = ({ children }) => {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={ref} className={`reveal-section${visible ? " is-visible" : ""}`}>{children}</div>;
+  return <div ref={ref} style={{ "--reveal-delay": `${delay}ms` }} className={`reveal-section${visible ? " is-visible" : ""}`}>{children}</div>;
 };
 
 export default Reveal;
